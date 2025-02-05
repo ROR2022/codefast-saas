@@ -4,7 +4,11 @@ export default function Home() {
   return (
     <div>
       <main>
-        <button className="btn btn-neutral">Get Started</button>
+        <h1>Collect customer feedback to build better products</h1>
+        <div>
+          Create a feedback board in minutes, prioritize features, and
+          buil products your customers will love.
+        </div>
       </main>
     </div>
   );
