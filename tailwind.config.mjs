@@ -7,15 +7,15 @@ const tailwindConfig = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+      
     },
   },
   plugins: [
     require("daisyui"),
   ],
+  daisyui: {
+    themes: ["light", "dark", "cupcake", "retro"],
+  },
 };
 
 export default tailwindConfig;
