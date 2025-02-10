@@ -1,5 +1,6 @@
 import React from "react";
 import ButtonLink from "@/components/ButtonLink";
+import Image from "next/image";
 
 const CheckIcon = () => (
   <svg
@@ -62,7 +63,7 @@ export default function Home() {
     <main>
       {/* HEADER */}
       <section className="bg-base-200">
-        <div className="flex justify-between items-center py-2 px-8 max-w-3xl mx-auto">
+        <div className="flex justify-between items-center py-2 px-8 max-w-5xl mx-auto">
           <div>CodeFastSaaS</div>
           <div className="space-x-4 max-md:hidden">
             <a className="link link-hover" href="#pricing">Pricing</a>
@@ -74,7 +75,15 @@ export default function Home() {
         </div>
       </section>
       {/* HERO */}
-      <section className="text-center py-32 px-8 max-w-3xl mx-auto">
+      <section className="text-center lg:text-left py-32 px-8 max-w-5xl mx-auto flex flex-col lg:flex-row gap-14 items-center lg:items-start">
+        <Image
+          src="/productDemo.jpeg"
+          alt="Hero image"
+          width={600}
+          height={400}
+          className="rounded-3xl w-96"
+        />
+        <div>
         <h1 className="text-4xl lg:text-5xl font-extrabold mb-6">
           Collect customer feedback to build better products
         </h1>
@@ -83,6 +92,7 @@ export default function Home() {
           products your customers will love.
         </div>
         <ButtonLink linkTo="dashboard" />
+        </div>
       </section>
       {/* PRICING */}
       <section className="bg-base-100 py-16 px-8" id="pricing">
