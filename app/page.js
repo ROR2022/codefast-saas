@@ -1,6 +1,8 @@
 import React from "react";
-import ButtonLink from "@/components/ButtonLink";
+//import ButtonLink from "@/components/ButtonLink";
+import ButtonLogin from "@/components/ButtonLogin";
 import Image from "next/image";
+import { auth } from "@/auth";
 
 const CheckIcon = () => (
   <svg
@@ -58,7 +60,9 @@ canVote = age >= 18 ? "Yes" : "No";
 
 console.log(canVote);
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+  //console.log('dataSession: ',session);
   return (
     <main>
       {/* HEADER */}
@@ -70,7 +74,7 @@ export default function Home() {
             <a className="link link-hover" href="#faq">FAQ</a>
           </div>
           <div>
-            <ButtonLink linkTo="dashboard" />
+            <ButtonLogin session={session} />
           </div>
         </div>
       </section>
@@ -91,7 +95,7 @@ export default function Home() {
           Create a feedback board in minutes, prioritize features, and buil
           products your customers will love.
         </div>
-        <ButtonLink linkTo="dashboard" />
+        <ButtonLogin session={session} />
         </div>
       </section>
       {/* PRICING */}
@@ -121,7 +125,7 @@ export default function Home() {
               ))}
             </ul>
 
-            <ButtonLink linkTo="dashboard" />
+            <ButtonLogin session={session} extraStyle="w-full" />
           </div>
         </div>
       </section>
