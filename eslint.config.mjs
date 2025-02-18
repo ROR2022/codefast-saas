@@ -11,6 +11,11 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
 });
 
-const eslintConfig = [...compat.extends("next/core-web-vitals", "eslint:recommended", "plugin:react/recommended")];
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals", "eslint:recommended", "plugin:react/recommended"), 
+  ...compat.rules({
+    "no-unused-vars": "warn",
+  }),
+];
 
 export default eslintConfig;

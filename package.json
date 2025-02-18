@@ -11,12 +11,15 @@
   "dependencies": {
     "@auth/core": "^0.37.4",
     "@auth/mongodb-adapter": "^3.7.4",
+    "axios": "^1.7.9",
     "codefast-saas": "file:",
     "mongodb": "^6.13.0",
+    "mongoose": "^8.10.0",
     "next": "15.1.6",
     "next-auth": "^5.0.0-beta.25",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
