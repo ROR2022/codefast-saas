@@ -1,5 +1,5 @@
 import React from "react";
-//import Link from "next/link"
+import Link from "next/link"
 import ButtonLink from "@/components/ButtonLink";
 import ButtonLogout from "@/components/ButtonLogout";
 import FormNewBoard from "@/components/FormNewBoard";
@@ -46,9 +46,14 @@ export default async function page() {
             {user.boards.map((board) => (
               <li 
               key={board._id}>
-                <h2
-                className="bg-base-100 p-6 rounded-3xl shadow-lg"
-                >{board.name}</h2>
+                
+                  <Link 
+                  href={`/dashboard/b/${board._id}`} 
+                  className="block bg-base-100 p-6 rounded-3xl shadow-lg cursor-pointer hover:bg-neutral hover:text-neutral-content duration-200"
+                  >
+                  {board.name}
+                  </Link>
+                  
               </li>
             ))}
           </ul>
