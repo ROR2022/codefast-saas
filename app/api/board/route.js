@@ -23,6 +23,10 @@ export async function POST(req) {
     await connectDB();
     const user = await User.findById(session.user?.id || userId || "");
 
+    if(!user.hasAccess) {
+      return NextResponse.json({ error: "Please subscribe first" }, { status: 403 });
+    }
+
     const board = await Board.create({ name, userId: user._id });
 
     user.boards.push(board._id);
@@ -56,6 +60,13 @@ export async function DELETE(req) {
     }
 
     await connectDB();
+    const user = await User.findById(session.user?.id);
+
+    if (!user.hasAccess) {
+      return NextResponse.json({ error: "Please subscribe first" }, { status: 403 });
+    }
+
+
     const resDelete = await Board.deleteOne({ 
         _id: boardId,
         userId: session.user?.id
@@ -68,7 +79,7 @@ export async function DELETE(req) {
       );
     }
 
-    const user = await User.findById(session.user?.id);
+    
     user.boards = user.boards.filter((id) => id.toString() !== boardId);
     await user.save();
 

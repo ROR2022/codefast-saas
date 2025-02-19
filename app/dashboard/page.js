@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link"
-import ButtonLink from "@/components/ButtonLink";
+//import ButtonLink from "@/components/ButtonLink";
 import ButtonLogout from "@/components/ButtonLogout";
 import FormNewBoard from "@/components/FormNewBoard";
 import { auth } from "@/auth";
 import connectDB from "@/libs/mongoose";
 import User from "@/models/User";
+import ButtonCheckout from "@/components/ButtonCheckout";
+import ButtonPortal from "@/components/ButtonPortal";
 //eslint-disable-next-line
 //import Board from "@/models/Board";
 
@@ -30,8 +32,9 @@ export default async function page() {
   return (
     <main className="bg-base-200 min-h-screen">
       <section className="bg-base-100">
-        <div className="max-w-5xl mx-auto flex gap-4 px-5 py-3 justify-end">
-          <ButtonLink linkTo="home" />
+        <div className="max-w-5xl mx-auto flex gap-4 px-5 py-3 justify-between">
+          {/* <ButtonLink linkTo="home" /> */}
+          {user.hasAccess ? <ButtonPortal /> : <ButtonCheckout />}
           <ButtonLogout />
         </div>
       </section>

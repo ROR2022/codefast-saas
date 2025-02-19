@@ -14,6 +14,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    hasAccess: {
+      type: Boolean,
+      default: false,
+    },
+    customerId: {
+      type: String,
+      trim: true,
+    },
     role: {
       type: String,
       trim: true,
