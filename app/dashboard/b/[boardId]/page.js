@@ -3,12 +3,14 @@
 import { redirect } from "next/navigation";
 import connectDB from "@/libs/mongoose";
 import Board from "@/models/Board";
+import Post from "@/models/Post";
 import { auth } from "@/auth";
 import Link from "next/link";
 import CardBoardLink from "@/components/CardBoardLink";
 import ButtonDeleteBoard from "@/components/ButtonDeleteBoard";
+import CardPostAdmin from "@/components/CardPostAdmin";
 
-const getBoard = async (boardId) => {
+const getData = async (boardId) => {
   try {
     await connectDB();
     const session = await auth();
@@ -18,7 +20,10 @@ const getBoard = async (boardId) => {
       userId: session?.user?.id,
     });
 
-    return board;
+    const posts = await Post.find({ boardId }).sort({ createdAt: -1 });
+    return { board, posts };
+
+    //return board;
   } catch (error) {
     console.error("An unexpected error happened:", error);
   }
@@ -27,11 +32,11 @@ const getBoard = async (boardId) => {
 const FeedbackBoard = async ({ params }) => {
   const { boardId } = await params;
 
-  const board = await getBoard(boardId);
+  const { board, posts } = await getData(boardId);
   if (!board) {
     redirect("/dashboard");
   }
-  console.log("FeedbackBoard: ", board);
+  //console.log("FeedbackBoard: ", board);
   return (
     <main className="bg-base-200 min-h-screen">
       <section className="bg-base-100">
@@ -53,12 +58,22 @@ const FeedbackBoard = async ({ params }) => {
           </Link>
         </div>
       </section>
-      <section className="max-w-5xl mx-auto px-5 py-12 space-y-12">
-        <h1 className="font-extrabold text-xl mb-4">{board.name}</h1>
+      <section className="max-w-5xl mx-auto px-5 py-12 flex flex-col items-start md:flex-row gap-12">
+        <div className="space-y-8">
+          <h1 className="font-extrabold text-xl mb-4">{board.name}</h1>
 
-        <CardBoardLink boardId={`${board._id}`} />
+          <CardBoardLink boardId={`${board._id}`} />
 
-        <ButtonDeleteBoard boardId={`${board._id}`} />
+          <ButtonDeleteBoard boardId={`${board._id}`} />
+        </div>
+        
+          
+          <ul className="space-y-4 flex-grow">
+            {posts.map((post) => (
+              <CardPostAdmin key={post._id} post={post} />
+            ))}
+          </ul>
+        
       </section>
     </main>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link"
+import { redirect } from "next/navigation";
 //import ButtonLink from "@/components/ButtonLink";
 import ButtonLogout from "@/components/ButtonLogout";
 import FormNewBoard from "@/components/FormNewBoard";
@@ -28,13 +29,17 @@ async function getUser() {
 
 export default async function page() {
   const user = await getUser();
+  if(!user) {
+    redirect("/");
+    //return null
+  }
   //console.log("User", user);
   return (
     <main className="bg-base-200 min-h-screen">
       <section className="bg-base-100">
         <div className="max-w-5xl mx-auto flex gap-4 px-5 py-3 justify-between">
           {/* <ButtonLink linkTo="home" /> */}
-          {user.hasAccess ? <ButtonPortal /> : <ButtonCheckout />}
+          {user?.hasAccess ? <ButtonPortal /> : <ButtonCheckout />}
           <ButtonLogout />
         </div>
       </section>
