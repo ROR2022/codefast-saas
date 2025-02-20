@@ -1,14 +1,4 @@
-/*
-POST service to create a new post
-this endpoint is not protected
-the boardId is in the query params and is required
-if the boardId is not provided, return an error
-the title is required
-if the title is not provided, return an error
-the description is optional
-the userId is taken from the session but is optional
-the response with NextResponse should return the created post
-*/
+
 import { NextResponse } from "next/server";
 import Post from "@/models/Post";
 import { auth } from "@/auth";
@@ -110,3 +100,4 @@ export async function DELETE(req) {
     );
   }
 }
+

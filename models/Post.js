@@ -22,6 +22,10 @@ const postSchema = new mongoose.Schema(
       trim: true,
       maxlength: 1000,
     },
+    votesCounter: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

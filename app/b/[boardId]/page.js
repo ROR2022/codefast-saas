@@ -12,7 +12,7 @@ const getData = async (boardId) => {
   try {
     await connectDB();
     const board = await Board.findById(boardId);
-    const posts = await Post.find({ boardId }).sort({ createdAt: -1 });
+    const posts = await Post.find({ boardId }).sort({ votesCounter: -1 });
     return { board, posts };
     //return board;
   } catch (error) {
@@ -35,7 +35,7 @@ const PublicFeedbackBoard = async ({ params }) => {
           {board.name}
           </h1>
       </section>
-      <section className="max-w-5xl mx-auto px-5 flex flex-col items-start md:flex-row gap-8 pb-12">
+      <section className="max-w-5xl mx-auto px-5 flex flex-col items-start md:flex-row gap-8 pb-12 sticky top-8">
         <FormAddPost boardId={`${boardId}`} />
         <ul className="space-y-4 flex-grow">
           {posts.map((post) => (
