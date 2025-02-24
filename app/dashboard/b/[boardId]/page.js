@@ -40,7 +40,7 @@ const FeedbackBoard = async ({ params }) => {
   return (
     <main className="bg-base-200 min-h-screen">
       <section className="bg-base-100">
-        <div className="max-w-5xl mx-auto flex px-5 py-3">
+        <div className="max-w-5xl mx-auto flex justify-between px-5 py-3">
           <Link href="/dashboard" className="btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -56,24 +56,25 @@ const FeedbackBoard = async ({ params }) => {
             </svg>
             Back
           </Link>
+          <Link href={'/'} className="btn btn-ghost">Home</Link>
         </div>
       </section>
       <section className="max-w-5xl mx-auto px-5 py-12 flex flex-col items-start md:flex-row gap-12">
         <div className="space-y-8">
-          <h1 className="font-extrabold text-xl mb-4">{board.name}</h1>
+          <h1 className="font-extrabold text-xl mb-4">{board.name} - {posts?.length || '0'} Posts</h1>
 
           <CardBoardLink boardId={`${board._id}`} />
 
           <ButtonDeleteBoard boardId={`${board._id}`} />
         </div>
-        
-          
-          <ul className="space-y-4 flex-grow">
-            {posts.map((post) => (
-              <CardPostAdmin key={post._id} post={post} />
-            ))}
-          </ul>
-        
+
+        <ul className="space-y-4 flex-grow">
+          {posts.length === 0 ? (
+            <div className="text-center text-gray-500">No posts yet</div>
+          ) : (
+            posts.map((post) => <CardPostAdmin key={post._id} post={post} />)
+          )}
+        </ul>
       </section>
     </main>
   );

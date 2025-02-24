@@ -44,7 +44,7 @@ const ButtonDeleteBoard = ({ boardId }) => {
     <button 
     onClick={handleDelete}
     disabled={loading}
-    className="btn btn-ghost text-error">
+    className="btn btn-ghost">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"

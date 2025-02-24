@@ -7,6 +7,7 @@ import Post from "@/models/Post";
 //import { auth } from "@/auth";
 import FormAddPost from "@/components/FormAddPost";
 import CardPost from "@/components/CardPost";
+import Link from "next/link";
 
 const getData = async (boardId) => {
   try {
@@ -36,7 +37,13 @@ const PublicFeedbackBoard = async ({ params }) => {
           </h1>
       </section>
       <section className="max-w-5xl mx-auto px-5 flex flex-col items-start md:flex-row gap-8 pb-12 sticky top-8">
+        <div className="flex flex-col">
         <FormAddPost boardId={`${boardId}`} />
+        <Link 
+        href={`/`}
+        className="text-lg font-bold text-blue-500 hover:text-blue-700 text-center"
+        >Go back home</Link>
+        </div>
         <ul className="space-y-4 flex-grow">
           {posts.map((post) => (
             <CardPost key={post._id} post={post} />

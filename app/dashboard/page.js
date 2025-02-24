@@ -40,7 +40,10 @@ export default async function page() {
         <div className="max-w-5xl mx-auto flex gap-4 px-5 py-3 justify-between">
           {/* <ButtonLink linkTo="home" /> */}
           {user?.hasAccess ? <ButtonPortal /> : <ButtonCheckout />}
+          <div>
           <ButtonLogout />
+          <Link href={'/'} className="btn btn-ghost">Home</Link>
+          </div>
         </div>
       </section>
       <section className="max-w-5xl mx-auto px-5 py-12 space-y-12">
